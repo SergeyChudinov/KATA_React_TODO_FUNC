@@ -1,1 +1,0 @@
-# KATA_React_TODO_FUNC
