@@ -7,16 +7,19 @@ function TodoListItem({ description, created, onToggleProp, onDeleted, completed
   const [label, setLabel] = useState(description)
   const [timer, setTimer] = useState(0)
   const [isRunning, setIsRunning] = useState(true)
-  let timerInterval
+  // eslint-disable-next-line no-unused-vars
+  const [timerInterval, setTimerInterval] = useState(null)
 
   useEffect(() => {
-    timerInterval = setInterval(() => {
+    const timerIntervalId = setInterval(() => {
       if (isRunning) {
         setTimer((timer) => timer + 1)
       }
     }, 1000)
-    return () => clearInterval(timerInterval)
-  })
+    setTimerInterval(timerIntervalId)
+
+    return () => clearInterval(timerIntervalId)
+  }, [isRunning])
 
   const stopTimer = () => {
     setIsRunning(false)
